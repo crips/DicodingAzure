@@ -67,34 +67,31 @@
 
         echo "<h3>Your're registered!</h3>";
     } //else if (isset($_POST['load_data'])) {
-        try {
-            $sql_select = "SELECT * FROM Bukuku";
-            $stmt = $conn->query($sql_select);
-            $registrants = $stmt->fetchAll(); 
-            if(count($registrants) > 0) {
-                echo "<h2>People who are registered:</h2>";
-                echo "<table>";
-                echo "<tr><th>Judul</th>";
-                echo "<th>Kategori</th>";
-                echo "<th>Penerbit</th>";
-                echo "<th>Harga</th>";
-                echo "<th>TglRilis</th>";
-                echo "<th>TglDitambahkan</th></tr>";
-                foreach($registrants as $registrant) {
-                    echo "<tr><td>".$registrant['judul']."</td>";
-                    echo "<td>".$registrant['kategori']."</td>";
-                    echo "<td>".$registrant['penerbit']."</td>";
-                    echo "<td>".$registrant['harga']."</td>";
-                    echo "<td>".$registrant['tglrilis']."</td>";
-                    echo "<td>".$registrant['tglditambahkan']."</td></tr>";
-                }
-                echo "</table>";
-            } else {
-                echo "<h3>Tidak ada buku terdaftar</h3>";
-            }
-        } catch(Exception $e) {
-            echo "Failed: " . $e;
+      
+    $sql_select = "SELECT * FROM Bukuku";
+    $stmt = $conn->query($sql_select);
+    $registrants = $stmt->fetchAll(); 
+    if(count($registrants) > 0) {
+		echo "<h2>People who are registered:</h2>";
+        echo "<table>";
+        echo "<tr><th>Judul</th>";
+        echo "<th>Kategori</th>";
+        echo "<th>Penerbit</th>";
+        echo "<th>Harga</th>";
+        echo "<th>TglRilis</th>";
+        echo "<th>TglDitambahkan</th></tr>";
+        foreach($registrants as $registrant) {
+			echo "<tr><td>".$registrant['judul']."</td>";
+            echo "<td>".$registrant['kategori']."</td>";
+            echo "<td>".$registrant['penerbit']."</td>";
+            echo "<td>".$registrant['harga']."</td>";
+            echo "<td>".$registrant['tglrilis']."</td>";
+            echo "<td>".$registrant['tglditambahkan']."</td></tr>";
         }
+		echo "</table>";
+    } else {
+		echo "<h3>Tidak ada buku terdaftar</h3>";
+    }
     //}
  ?>
  </body>
