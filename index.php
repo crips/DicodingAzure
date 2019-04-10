@@ -18,25 +18,26 @@
  <body>
  <h1>Tambahkan Buku Baru</h1>
  <form method="post" action="index.php" enctype="multipart/form-data" >
-       Judul  <input type="text" name="name" id="name"/></br></br>
+       Judul  <input type="text" name="Judul" id="Judul"/></br></br>
        Kategori <select name="kategori" id="kategori">
-                    <option>Romance</option>
-                    <option>Comedy</option>
-                    <option>Horror</option>
-                    <option>Action</option>
-                    <option>Drama</option>
-                    <option>Fantasy</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Action">Action</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Fantasy">Fantasy</option>
        </select></br></br>
        Penerbit <select name="penerbit" id="penerbit">
-                    <option>Elexmedia</option>
-                    <option>Gagasmedia</option>
-                    <option>Mizan</option>
-                    <option>Bukune</option>
-                    <option>Erlangga</option>
-                    <option>Pustaka Elba</option>
+                    <option value="Elexmedia">Elexmedia</option>
+                    <option value="M&C">M&C</option>
+                    <option value="Gagasmedia">Gagasmedia</option>
+                    <option value="Mizan">Mizan</option>
+                    <option value="Bukune">Bukune</option>
+                    <option value="Erlangga">Erlangga</option>
+                    <option value="Pustaka Elba">Pustaka Elba</option>
        </select></br></br>
-       harga <input type="text" name="email" id="email"/></br></br>
-       Tgl Rilis <input type="text" name="email" id="email"/></br></br>       
+       harga <input type="text" name="Harga" id="Harga"/></br></br>
+       Tgl Rilis <input type="text" name="TglRilis" id="TglRilis"/></br></br>       
        <input type="submit" name="submit" value="Simpan" />
        <input type="submit" name="load_data" value="Load Data" />
  </form>
