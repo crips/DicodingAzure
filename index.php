@@ -42,6 +42,8 @@
  </form>
  <?php
     include "config.php";
+	$conn = sqlsrv_connect($host, $connectioninfo);
+
     if (isset($_POST['submit'])) {
         try {
             $judul = $_POST['Judul'];
@@ -69,10 +71,11 @@
     } //else if (isset($_POST['load_data'])) {
       
     $sql_select = "SELECT * FROM Bukuku";
-    $stmt = $conn->query($sql_select);
+    //$stmt = $conn->query($sql_select);
+	$stmt = sqlsrv_query($conn, $sql_select);
     $registrants = $stmt->fetchAll(); 
     if(count($registrants) > 0) {
-		echo "<h2>People who are registered:</h2>";
+		echo "<h2>Katalog Buku</h2>";
         echo "<table>";
         echo "<tr><th>Judul</th>";
         echo "<th>Kategori</th>";
