@@ -62,7 +62,7 @@
             $Harga = $_POST['Harga'];
             
             // Insert data
-            $sql_insert = "INSERT INTO Bukuku (Judul, Kategori, Penerbit, Harga, TglRilis, TglDitambahkan) VALUES ('$judul','$Kategori','$Penerbit','$Harga','', GETDATE)";
+            $sql_insert = "INSERT INTO Bukuku (Judul, Kategori, Penerbit, Harga, TglRilis, TglDitambahkan) VALUES ('$judul','$Kategori','$Penerbit','$Harga','', GETDATE())";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $judul);
             $stmt->bindValue(2, $Kategori);
