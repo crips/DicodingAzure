@@ -70,32 +70,26 @@
         echo "<h3>Your're registered!</h3>";
     } //else if (isset($_POST['load_data'])) {
       
-    $sql_select = "SELECT * FROM Bukuku";
-    //$stmt = $conn->query($sql_select);
-	$stmt = sqlsrv_query($conn, $sql_select);
-    $registrants = $stmt->fetchAll(); 
-    if(count($registrants) > 0) {
-		echo "<h2>Katalog Buku</h2>";
-        echo "<table>";
-        echo "<tr><th>Judul</th>";
-        echo "<th>Kategori</th>";
-        echo "<th>Penerbit</th>";
-        echo "<th>Harga</th>";
-        echo "<th>TglRilis</th>";
-        echo "<th>TglDitambahkan</th></tr>";
-        foreach($registrants as $registrant) {
-			echo "<tr><td>".$registrant['judul']."</td>";
-            echo "<td>".$registrant['kategori']."</td>";
-            echo "<td>".$registrant['penerbit']."</td>";
-            echo "<td>".$registrant['harga']."</td>";
-            echo "<td>".$registrant['tglrilis']."</td>";
-            echo "<td>".$registrant['tglditambahkan']."</td></tr>";
-        }
-		echo "</table>";
-    } else {
-		echo "<h3>Tidak ada buku terdaftar</h3>";
-    }
-    //}
- ?>
+	$conn = sqlsrv_connect($host, $connectionInfo);
+	$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, CAST(buku.Harga as INT) as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
+	$stmt = sqlsrv_query($conn, $sql_select);							
+	do {
+		while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+			?>
+		<tr>
+			<td><? echo $row['ID'];?></td>
+			<td><? echo $row['Judul'];?></td>
+			<td><? echo $row['Deskripsi'];?></td>
+			<td><? echo $row['Kategori'];?></td>
+			<td><? echo $row['Harga'];?></td>
+			<td><? echo $row['Penerbit'];?></td>
+			<td><? echo $row['Rilis'];?></td>
+			<td><? echo $row['Addedd'];?></td>
+		</tr>
+		<?
+		}
+	}
+	while (sqlsrv_next_result($stmt));
+?>
  </body>
  </html>
