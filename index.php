@@ -68,28 +68,36 @@
         }
 
         echo "<h3>Your're registered!</h3>";
-    } //else if (isset($_POST['load_data'])) {
-      
-	$conn = sqlsrv_connect($host, $connectionInfo);
-	$sql_select = "SELECT buku.Id as ID, buku.JudulBuku as Judul, buku.Deskripsi as Deskripsi, kat.NamaKategori as Kategori, CAST(buku.Harga as INT) as Harga, pe.NamaPenerbit as Penerbit, buku.TglRilis as Rilis, buku.TglDitambahkan as Addedd FROM buku INNER JOIN Kategori kat ON buku.IdKategori = kat.IdKategori INNER JOIN Penerbit pe ON buku.IdPenerbit = pe.IdPenerbit";
-	$stmt = sqlsrv_query($conn, $sql_select);							
-	do {
-		while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-			?>
-		<tr>
-			<td><? echo $row['ID'];?></td>
-			<td><? echo $row['Judul'];?></td>
-			<td><? echo $row['Deskripsi'];?></td>
-			<td><? echo $row['Kategori'];?></td>
-			<td><? echo $row['Harga'];?></td>
-			<td><? echo $row['Penerbit'];?></td>
-			<td><? echo $row['Rilis'];?></td>
-			<td><? echo $row['Addedd'];?></td>
-		</tr>
-		<?
+    }
+    ?>
+
+	<?php
+	try {
+		$conn = sqlsrv_connect($host, $connectionInfo);
+		$sql_select = "SELECT * FROM Bukuku";
+		$stmt = sqlsrv_query($conn, $sql_select);							
+		do {
+			while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+				?>
+			<tr>
+				<td><? echo $row['ID'];?></td>
+				<td><? echo $row['Judul'];?></td>
+				<td><? echo $row['Deskripsi'];?></td>
+				<td><? echo $row['Kategori'];?></td>
+				<td><? echo $row['Harga'];?></td>
+				<td><? echo $row['Penerbit'];?></td>
+				<td><? echo $row['Rilis'];?></td>
+				<td><? echo $row['Addedd'];?></td>
+			</tr>
+			<?
+			}
 		}
+		while (sqlsrv_next_result($stmt));
 	}
-	while (sqlsrv_next_result($stmt));
-?>
+	catch (PDOException $error) 
+	{
+		echo $sql_select . "<br>" . $error->getMessage();
+	}
+	?>
  </body>
  </html>
