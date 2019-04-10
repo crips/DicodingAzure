@@ -20,24 +20,24 @@
  <form method="post" action="index.php" enctype="multipart/form-data" >
        Judul  <input type="text" name="Judul" id="Judul"/></br></br>
        Kategori <select name="kategori" id="kategori">
-                    <option value="Romance">Romance</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Action">Action</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Fantasy">Fantasy</option>
+                    <option name="Romance" value="Romance">Romance</option>
+                    <option name="" value="Comedy">Comedy</option>
+                    <option name="" value="Horror">Horror</option>
+                    <option name="" value="Action">Action</option>
+                    <option name="" value="Drama">Drama</option>
+                    <option name="" value="Fantasy">Fantasy</option>
        </select></br></br>
        Penerbit <select name="penerbit" id="penerbit">
-                    <option value="Elexmedia">Elexmedia</option>
-                    <option value="M&C">M&C</option>
-                    <option value="Gagasmedia">Gagasmedia</option>
-                    <option value="Mizan">Mizan</option>
-                    <option value="Bukune">Bukune</option>
-                    <option value="Erlangga">Erlangga</option>
-                    <option value="Pustaka Elba">Pustaka Elba</option>
+                    <option name="" value="Elexmedia">Elexmedia</option>
+                    <option name="" value="M&C">M&C</option>
+                    <option name="" value="Gagasmedia">Gagasmedia</option>
+                    <option name="" value="Mizan">Mizan</option>
+                    <option name="" value="Bukune">Bukune</option>
+                    <option name="" value="Erlangga">Erlangga</option>
+                    <option name="" value="Pustaka Elba">Pustaka Elba</option>
        </select></br></br>
        harga <input type="text" name="Harga" id="Harga"/></br></br>
-       Tgl Rilis <input type="text" name="TglRilis" id="TglRilis"/></br></br>       
+       Tgl Rilis <input type="date" name="TglRilis" id="TglRilis"/></br></br>       
        <input type="submit" name="submit" value="Simpan" />
        <input type="submit" name="load_data" value="Load Data" />
  </form>
