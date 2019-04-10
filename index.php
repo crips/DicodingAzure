@@ -38,8 +38,9 @@
        harga <input type="text" name="email" id="email"/></br></br>
        Tgl Rilis <input type="text" name="email" id="email"/></br></br>       
        <input type="submit" name="submit" value="Simpan" />
-       <!--<input type="submit" name="load_data" value="Load Data" />-->
+       <input type="submit" name="load_data" value="Load Data" />
  </form>
+
  <?php
     include "config.php";
 	$conn = sqlsrv_connect($host, $connectioninfo);
@@ -67,12 +68,9 @@
             echo "Failed: " . $e;
         }
 
-        echo "<h3>Your're registered!</h3>";
-    }
-    ?>
-
-	<?php
-	try {
+        echo "<h3>Buku Berhasil Ditambahkan</h3>";
+    } else if (isset($_POST['load_data'])) {
+		try {
 		$conn = sqlsrv_connect($host, $connectionInfo);
 		$sql_select = "SELECT * FROM Bukuku";
 		$stmt = sqlsrv_query($conn, $sql_select);							
@@ -97,6 +95,7 @@
 	catch (PDOException $error) 
 	{
 		echo $sql_select . "<br>" . $error->getMessage();
+	}
 	}
 	?>
  </body>
