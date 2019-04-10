@@ -42,61 +42,69 @@
  </form>
 
  <?php
-    include "config.php";
-	$conn = sqlsrv_connect($host, $connectioninfo);
+    $host = "tcp:bukabuku.database.windows.net, 1433";
+    $user = "mafrizal";
+    $pass = "Timpakul2016+";
+    $db = "bukabuku";
+
+    try {
+        $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
+        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    } catch(Exception $e) {
+        echo "Failed: " . $e;
+    }
 
     if (isset($_POST['submit'])) {
         try {
-            $judul = $_POST['Judul'];
+			$judul = $_POST['Judul'];
             $Kategori = $_POST['Kategori'];
             $Penerbit = $_POST['Penerbit'];
             $Harga = $_POST['Harga'];
-            $TglRilis = $_POST['TglRilis'];
-            $TglDitambahkan = $_POST['TglDitambahkan'];
             
             // Insert data
-            $sql_insert = "INSERT INTO Bukuku (Judul, Kategori, Penerbit, Harga, TglRilis, TglDitambahkan) VALUES ($judul,$Kategori,$Penerbit,$Harga,$TglRilis, $TglDitambahkan)";
+            $sql_insert = "INSERT INTO Bukuku (Judul, Kategori, Penerbit, Harga, TglRilis, TglDitambahkan) VALUES ('$judul','$Kategori','$Penerbit','$Harga','', GETDATE)";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $judul);
             $stmt->bindValue(2, $Kategori);
             $stmt->bindValue(3, $Penerbit);
             $stmt->bindValue(4, $Harga);
             $stmt->bindValue(5, $TglRilis);
-            $stmt->bindValue(6, $TglDitambahkan);
+            //$stmt->bindValue(6, $TglDitambahkan);
             $stmt->execute();
         } catch(Exception $e) {
             echo "Failed: " . $e;
         }
-
-        echo "<h3>Buku Berhasil Ditambahkan</h3>";
+        echo "<h3>Your're registered!</h3>";
     } else if (isset($_POST['load_data'])) {
-		try {
-		$conn = sqlsrv_connect($host, $connectionInfo);
-		$sql_select = "SELECT * FROM Bukuku";
-		$stmt = sqlsrv_query($conn, $sql_select);							
-		do {
-			while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-				?>
-			<tr>
-				<td><? echo $row['ID'];?></td>
-				<td><? echo $row['Judul'];?></td>
-				<td><? echo $row['Deskripsi'];?></td>
-				<td><? echo $row['Kategori'];?></td>
-				<td><? echo $row['Harga'];?></td>
-				<td><? echo $row['Penerbit'];?></td>
-				<td><? echo $row['Rilis'];?></td>
-				<td><? echo $row['Addedd'];?></td>
-			</tr>
-			<?
-			}
-		}
-		while (sqlsrv_next_result($stmt));
-	}
-	catch (PDOException $error) 
-	{
-		echo $sql_select . "<br>" . $error->getMessage();
-	}
-	}
-	?>
+        try {
+            $sql_select = "SELECT * FROM Bukuku";
+            $stmt = $conn->query($sql_select);
+            $registrants = $stmt->fetchAll(); 
+            if(count($registrants) > 0) {
+                echo "<h2>People who are registered:</h2>";
+                echo "<table>";
+                echo "<tr><th>Judul</th>";
+                echo "<th>kategori</th>";
+                echo "<th>Penerbit</th>";
+                echo "<th>Harga</th>";
+                echo "<th>TglRilis</th>";
+                echo "<th>TglDitambahkan</th></tr>";
+                foreach($registrants as $registrant) {
+                    echo "<tr><td>".$registrant['Judul']."</td>";
+                    echo "<td>".$registrant['Kategori']."</td>";
+                    echo "<td>".$registrant['Penerbit']."</td>";
+                    echo "<td>".$registrant['Harga']."</td>";
+                    echo "<td>".$registrant['TglRilis']."</td>";
+                    echo "<td>".$registrant['TglDitambahkan']."</td></tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<h3>No one is currently registered.</h3>";
+            }
+        } catch(Exception $e) {
+            echo "Failed: " . $e;
+        }
+    }
+ ?>
  </body>
  </html>
