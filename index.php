@@ -21,11 +21,11 @@
        Judul  <input type="text" name="Judul" id="Judul"/></br></br>
        Kategori <select name="kategori" id="kategori">
                     <option name="Romance" value="Romance">Romance</option>
-                    <option name="" value="Comedy">Comedy</option>
-                    <option name="" value="Horror">Horror</option>
-                    <option name="" value="Action">Action</option>
-                    <option name="" value="Drama">Drama</option>
-                    <option name="" value="Fantasy">Fantasy</option>
+                    <option name="Comedy" value="Comedy">Comedy</option>
+                    <option name="Horror" value="Horror">Horror</option>
+                    <option name="Action" value="Action">Action</option>
+                    <option name="Drama" value="Drama">Drama</option>
+                    <option name="Fantasy" value="Fantasy">Fantasy</option>
        </select></br></br>
        harga <input type="text" name="Harga" id="Harga"/></br></br>
        <input type="submit" name="submit" value="Simpan" />
@@ -52,7 +52,7 @@
             $Harga = $_POST['Harga'];
             
             // Insert data
-            $sql_insert = "INSERT INTO Buku (Judul, Kategori, Harga, TglDitambahkan) VALUES ('$judul','$Kategori','$Harga','', GETDATE())";
+            $sql_insert = "INSERT INTO Buku VALUES ('$judul','$Kategori','$Harga','', GETDATE())";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $judul);
             $stmt->bindValue(2, $Kategori);
