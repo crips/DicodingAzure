@@ -33,7 +33,6 @@
  </form>
 
  <?php
- /*
 	$host = "tcp:bukabuku.database.windows.net, 1433";
     $user = "mafrizal";
     $pass = "Timpakul2016+";
@@ -45,14 +44,11 @@
     } catch(Exception $e) {
         echo "Failed: " . $e;
     }
-*/
 
-	include "config.php";
-    if (isset($_POST['submit'])) {
+	if (isset($_POST['submit'])) {
         try {
 			$judul = $_POST['Judul'];
             $Kategori = $_POST['Kategori'];
-            $Penerbit = $_POST['Penerbit'];
             $Harga = $_POST['Harga'];
             
             // Insert data
