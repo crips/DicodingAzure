@@ -64,7 +64,7 @@
         echo "<h3>Sukses :D</h3>";
     } else if (isset($_POST['load_data'])) {
         try {
-            $sql_select = "SELECT Judul, Kategori, CAST(Harga as Money) as Harga, date FROM Bukuku";
+            $sql_select = "SELECT Judul, Kategori, CAST(Harga as INT) as Harga, date FROM Bukuku";
             $stmt = $conn->query($sql_select);
             $registrants = $stmt->fetchAll(); 
             if(count($registrants) > 0) {
