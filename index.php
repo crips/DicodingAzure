@@ -54,9 +54,9 @@
             // Insert data
             $sql_insert = "INSERT INTO Buku VALUES ('$judul','$Kategori','$Harga','', GETDATE())";
             $stmt = $conn->prepare($sql_insert);
-            $stmt->bindValue(1, $judul);
-            $stmt->bindValue(2, $Kategori);
-            $stmt->bindValue(3, $Harga);
+            $stmt->bindValue(2, $judul);
+            $stmt->bindValue(3, $Kategori);
+            $stmt->bindValue(4, $Harga);
             //$stmt->bindValue(6, $TglDitambahkan);
             $stmt->execute();
         } catch(Exception $e) {
