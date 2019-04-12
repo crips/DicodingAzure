@@ -19,7 +19,7 @@
  <h1>Tambahkan Buku Baru</h1>
  <form method="post" action="index.php" enctype="multipart/form-data" >
        Judul  <input type="text" name="Judul" id="Judul"/></br></br>
-       Kategori <select name="kategori" id="kategori">
+       Kategori <select name="Kategori" id="Kategori">
                     <option name="Romance" value="Romance">Romance</option>
                     <option name="Comedy" value="Comedy">Comedy</option>
                     <option name="Horror" value="Horror">Horror</option>
@@ -78,7 +78,7 @@
                     echo "<tr><td>".$registrant['Judul']."</td>";
                     echo "<td>".$registrant['Kategori']."</td>";
                     echo "<td>".$registrant['Harga']."</td>";
-                    echo "<td>".$registrant['TglDitambahkan']."</td></tr>";
+                    echo "<td>".$registrant['date']."</td></tr>";
                 }
                 echo "</table>";
             } else {
