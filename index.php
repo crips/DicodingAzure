@@ -56,13 +56,11 @@
             $Harga = $_POST['Harga'];
             
             // Insert data
-            $sql_insert = "INSERT INTO Bukuku (Judul, Kategori, Penerbit, Harga, TglRilis, TglDitambahkan) VALUES ('$judul','$Kategori','$Penerbit','$Harga','', GETDATE())";
+            $sql_insert = "INSERT INTO Buku (Judul, Kategori, Harga, TglDitambahkan) VALUES ('$judul','$Kategori','$Harga','', GETDATE())";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $judul);
             $stmt->bindValue(2, $Kategori);
-            $stmt->bindValue(3, $Penerbit);
-            $stmt->bindValue(4, $Harga);
-            $stmt->bindValue(5, $TglRilis);
+            $stmt->bindValue(3, $Harga);
             //$stmt->bindValue(6, $TglDitambahkan);
             $stmt->execute();
         } catch(Exception $e) {
@@ -71,29 +69,25 @@
         echo "<h3>Your're registered!</h3>";
     } else if (isset($_POST['load_data'])) {
         try {
-            $sql_select = "SELECT * FROM Bukuku";
+            $sql_select = "SELECT * FROM Buku";
             $stmt = $conn->query($sql_select);
             $registrants = $stmt->fetchAll(); 
             if(count($registrants) > 0) {
-                echo "<h2>People who are registered:</h2>";
+                echo "<h2>Data Buku:</h2>";
                 echo "<table>";
                 echo "<tr><th>Judul</th>";
                 echo "<th>kategori</th>";
-                echo "<th>Penerbit</th>";
                 echo "<th>Harga</th>";
-                echo "<th>TglRilis</th>";
                 echo "<th>TglDitambahkan</th></tr>";
                 foreach($registrants as $registrant) {
                     echo "<tr><td>".$registrant['Judul']."</td>";
                     echo "<td>".$registrant['Kategori']."</td>";
-                    echo "<td>".$registrant['Penerbit']."</td>";
                     echo "<td>".$registrant['Harga']."</td>";
-                    echo "<td>".$registrant['TglRilis']."</td>";
                     echo "<td>".$registrant['TglDitambahkan']."</td></tr>";
                 }
                 echo "</table>";
             } else {
-                echo "<h3>No one is currently registered.</h3>";
+                echo "<h3>Tidak ada buku, tambahkan baru</h3>";
             }
         } catch(Exception $e) {
             echo "Failed: " . $e;
