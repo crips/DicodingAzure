@@ -52,20 +52,19 @@
             $Harga = $_POST['Harga'];
             
             // Insert data
-            $sql_insert = "INSERT INTO Buku (Judul, Kategori, Harga, TglDitambahkan) VALUES ('$judul','$Kategori','$Harga','', GETDATE())";
+            $sql_insert = "INSERT INTO Bukuku (Judul, Kategori, Harga, date) VALUES ('$judul','$Kategori','$Harga', GETDATE())";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $judul);
             $stmt->bindValue(2, $Kategori);
             $stmt->bindValue(3, $Harga);
-            $stmt->bindValue(4, $TglDitambahkan);
             $stmt->execute();
         } catch(Exception $e) {
             echo "Failed: " . $e;
         }
-        echo "<h3>Your're registered!</h3>";
+        echo "<h3>Sukses :D</h3>";
     } else if (isset($_POST['load_data'])) {
         try {
-            $sql_select = "SELECT * FROM Buku";
+            $sql_select = "SELECT * FROM Bukuku";
             $stmt = $conn->query($sql_select);
             $registrants = $stmt->fetchAll(); 
             if(count($registrants) > 0) {
