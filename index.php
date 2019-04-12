@@ -27,23 +27,14 @@
                     <option name="" value="Drama">Drama</option>
                     <option name="" value="Fantasy">Fantasy</option>
        </select></br></br>
-       Penerbit <select name="penerbit" id="penerbit">
-                    <option name="" value="Elexmedia">Elexmedia</option>
-                    <option name="" value="M&C">M&C</option>
-                    <option name="" value="Gagasmedia">Gagasmedia</option>
-                    <option name="" value="Mizan">Mizan</option>
-                    <option name="" value="Bukune">Bukune</option>
-                    <option name="" value="Erlangga">Erlangga</option>
-                    <option name="" value="Pustaka Elba">Pustaka Elba</option>
-       </select></br></br>
        harga <input type="text" name="Harga" id="Harga"/></br></br>
-       Tgl Rilis <input type="date" name="TglRilis" id="TglRilis"/></br></br>       
        <input type="submit" name="submit" value="Simpan" />
        <input type="submit" name="load_data" value="Load Data" />
  </form>
 
  <?php
-    $host = "tcp:bukabuku.database.windows.net, 1433";
+ /*
+	$host = "tcp:bukabuku.database.windows.net, 1433";
     $user = "mafrizal";
     $pass = "Timpakul2016+";
     $db = "bukabuku";
@@ -54,7 +45,9 @@
     } catch(Exception $e) {
         echo "Failed: " . $e;
     }
+*/
 
+	include "config.php";
     if (isset($_POST['submit'])) {
         try {
 			$judul = $_POST['Judul'];
